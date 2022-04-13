@@ -9,6 +9,7 @@ public class Knife : MonoBehaviour
     private bool _isPinnedDown = false;
     private bool _collidedWithKnife = false;
 
+    public KnifeProperties KnifeProperties;
     public bool IsPinnedDown => _isPinnedDown;
     public bool CollidedWithKnife => _collidedWithKnife;
 
@@ -16,6 +17,16 @@ public class Knife : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody>().isKinematic = false;
         gameObject.GetComponent<Rigidbody>().AddForce(0, 20, 0, ForceMode.VelocityChange);
+    }
+
+    private void Start()
+    {
+        Init(KnifeStorage.Storage.GetCurrentKnife());
+    }
+
+    public void Init(KnifeProperties knifeProperties)
+    {
+        Instantiate(knifeProperties.Prefab, transform.position, transform.rotation, transform);
     }
 
     private void OnCollisionEnter(Collision collision)

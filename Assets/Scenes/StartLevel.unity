@@ -1657,7 +1657,6 @@ MonoBehaviour:
   _componentsToDisable:
   - {fileID: 259132333}
   - {fileID: 566732137}
-  - {fileID: 1347940237}
   _looseWindow: {fileID: 1573992445}
   _knifeSpawner: {fileID: 259132333}
 --- !u!4 &1347940238
@@ -1918,7 +1917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1573992446}
   m_Layer: 5
-  m_Name: LooseWindow
+  m_Name: LoseWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2232,6 +2231,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c5c97ba57ce2ab478f99074143c8196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1966693559
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.82418114
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.642797
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.001459
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375119, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_Name
+      value: KnifeStorage
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
 --- !u!1001 &2413347458707127398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2257,11 +2313,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436800449847524153, guid: ac7d7277b300bc3499ffd45807f1df09, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.261
+      value: 1.761
       objectReference: {fileID: 0}
     - target: {fileID: 8436800449847524153, guid: ac7d7277b300bc3499ffd45807f1df09, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.047
+      value: -10.953
       objectReference: {fileID: 0}
     - target: {fileID: 8436800449847524153, guid: ac7d7277b300bc3499ffd45807f1df09, type: 3}
       propertyPath: m_LocalRotation.w

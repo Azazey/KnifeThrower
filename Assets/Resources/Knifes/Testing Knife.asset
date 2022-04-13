@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40d084d72c800e4cb2a7009de4657f8, type: 3}
+  m_Name: Testing Knife
+  m_EditorClassIdentifier: 
+  Name: Testing Knife
+  Description: Its used to be the first knife in entire game, but something went
+    wrong.
+  Prefab: {fileID: 8871305028553571659, guid: 8b36109d809370843bd613edff2b675d, type: 3}

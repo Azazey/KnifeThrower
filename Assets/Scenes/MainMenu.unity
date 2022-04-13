@@ -494,7 +494,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 41.77765, y: -63.55542}
+  m_AnchoredPosition: {x: 41.777588, y: -63.55542}
   m_SizeDelta: {x: 870.85, y: 96.900024}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &628077926
@@ -1339,3 +1339,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4089076832904575538
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.82418114
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.642797
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.001459
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375117, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089076832549375119, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
+      propertyPath: m_Name
+      value: KnifeStorage
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b1c97dc752808dd44aeb43faf21b9c90, type: 3}
