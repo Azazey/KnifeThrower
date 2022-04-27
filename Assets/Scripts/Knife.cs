@@ -48,4 +48,13 @@ public class Knife : MonoBehaviour
                 Random.Range(10f, 30f), ForceMode.VelocityChange);
         }
     }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Apple"))
+        {
+            Debug.Log("Apple was hitted");
+            collider.GetComponent<Apple>().OnKnifeHit();
+        }
+    }
 }

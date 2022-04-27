@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Apple : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private bool collected = false;
+
+    public void OnKnifeHit()
     {
-        
+        //Здесь надо написать логику разрушения модельки яблока и зачисления очков 
+        if (!collected)
+        {
+            collected = true;
+            gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
