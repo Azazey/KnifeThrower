@@ -13,6 +13,7 @@ public class Apple : MonoBehaviour
         {
             collected = true;
             gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            transform.parent = null;
         }
     }
 

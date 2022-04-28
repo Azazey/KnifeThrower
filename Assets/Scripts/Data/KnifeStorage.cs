@@ -9,6 +9,8 @@ public class KnifeStorage : MonoBehaviour
     
     public List<KnifeProperties> Knifes = new List<KnifeProperties>();
 
+    private const string currentKnife = "currentKnife";
+
     public List<KnifeProperties> GetKnifeList()
     {
         if (Knifes.Count == 0)
@@ -21,7 +23,7 @@ public class KnifeStorage : MonoBehaviour
 
     public KnifeProperties GetCurrentKnife()
     {
-        if (!PlayerPrefs.HasKey("currentKnife"))
+        if (!PlayerPrefs.HasKey(currentKnife))
         {
             SetStandartKnife();
         }
@@ -48,7 +50,7 @@ public class KnifeStorage : MonoBehaviour
 
     private void SetStandartKnife()
     {
-        PlayerPrefs.SetString("currentKnifeName", Knifes[0].Name);
+        PlayerPrefs.SetString(currentKnife, Knifes[0].Name);
         PlayerPrefs.Save();
     }
 
