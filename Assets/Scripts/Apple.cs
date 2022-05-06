@@ -28,7 +28,8 @@ public class Apple : MonoBehaviour
     private void Explode()
     {
         Vector3 origin = GetAvaragePosition();
-        
+        Vector3 forceToCamera = new Vector3(0,0, -2);
+
         _parts.gameObject.SetActive(true);
         _meshRenderer.enabled = false;
 
@@ -36,7 +37,7 @@ public class Apple : MonoBehaviour
         {
             Vector3 force = (rigidbody.transform.position - origin).normalized * _explosionPower;
             rigidbody.isKinematic = false;
-            rigidbody.AddForce(force, ForceMode.VelocityChange);
+            rigidbody.AddForce(force + forceToCamera, ForceMode.VelocityChange);
         }
     }
 
