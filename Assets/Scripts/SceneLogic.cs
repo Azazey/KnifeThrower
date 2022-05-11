@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SceneLogic : MonoBehaviour
 {
     [SerializeField] private MonoBehaviour[] _componentsToDisable;
     [SerializeField] private GameObject _looseWindow;
+    [SerializeField] private GameObject _passWindow;
     [SerializeField] private KnifeSpawner _knifeSpawner;
-
+    [SerializeField] private int _knifeNeedToPassLevel = 5;
+    [SerializeField] private Log _log;
+    
     private Knife _currentKnife;
+    private int _currentKnifeCount;
+    private bool _levelPassed;
 
     public Knife CurrentKnife => _currentKnife;
 
@@ -25,6 +31,25 @@ public class SceneLogic : MonoBehaviour
         for (int i = 0; i < _componentsToDisable.Length; i++)
         {
             _componentsToDisable[i].enabled = false;
+        }
+    }
+
+    public void ActivatePassMenu()
+    {
+        _log.LogShatter();
+        _passWindow.SetActive(true);
+        for (int i = 0; i < _componentsToDisable.Length; i++)
+        {
+            _componentsToDisable[i].enabled = false;
+        }
+    }
+
+    private void CheckPassedLevel()
+    {
+        if (_currentKnifeCount == _knifeNeedToPassLevel && !_levelPassed)
+        {
+            ActivatePassMenu();
+            _levelPassed = true;
         }
     }
 
@@ -45,6 +70,7 @@ public class SceneLogic : MonoBehaviour
         {
             if (_currentKnife.IsPinnedDown)
             {
+                _currentKnifeCount++;
                 SpawnKnife();
             }
         }
@@ -52,12 +78,16 @@ public class SceneLogic : MonoBehaviour
 
     private void Start()
     {
+        _looseWindow.SetActive(false);
+        _passWindow.SetActive(false);
         SpawnKnife();
+        _levelPassed = false;
     }
 
     private void Update()
     {
         TryToSpawnKnife();
+        CheckPassedLevel();
         CheckLoosing();
     }
 }
