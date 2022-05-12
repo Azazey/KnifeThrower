@@ -10,8 +10,9 @@ public class SceneLogic : MonoBehaviour
     [SerializeField] private MonoBehaviour[] _componentsToDisable;
     [SerializeField] private GameObject _looseWindow;
     [SerializeField] private GameObject _passWindow;
-    [SerializeField] private KnifeSpawner _knifeSpawner;
     [SerializeField] private int _knifeNeedToPassLevel = 5;
+    [SerializeField] private KnifeSpawner _knifeSpawner;
+    [SerializeField] private PlayerBelongsWriter _playerBelongsWriter;
     [SerializeField] private Log _log;
     
     private Knife _currentKnife;
@@ -71,7 +72,10 @@ public class SceneLogic : MonoBehaviour
             if (_currentKnife.IsPinnedDown)
             {
                 _currentKnifeCount++;
-                SpawnKnife();
+                if (_currentKnifeCount < _knifeNeedToPassLevel)
+                {
+                    SpawnKnife(); 
+                }
             }
         }
     }

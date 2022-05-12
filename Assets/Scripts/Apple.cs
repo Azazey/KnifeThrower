@@ -19,14 +19,20 @@ public class Apple : MonoBehaviour
         if (!_collected)
         {
             _collected = true;
-            gameObject.GetComponent<Rigidbody>().isKinematic = false;
             transform.parent = null;
             Explode();
         }
     }
+    
+    public void OnLogShatter()
+    {
+        Explode();
+    }
 
     private void Explode()
     {
+        gameObject.GetComponent<Rigidbody>().isKinematic = false;
+
         Vector3 origin = GetAvaragePosition();
         Vector3 forceToCamera = new Vector3(0,0, -2);
 

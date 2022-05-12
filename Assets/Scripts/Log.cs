@@ -2,40 +2,51 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Log : MonoBehaviour
 {
     [SerializeField] private AnimationCurve _rotationIntesive;
     [SerializeField] private float _explosionPower;
-    [SerializeField] private Transform _parts;
-
+    [SerializeField] private Transform[] _logParts;
+    
     private Vector3 _rotationSpeed;
     private float _currentTime;
     private bool _isShattered;
-    private Rigidbody[] _rigidbodies;
 
     public void LogShatter()
     {
-        Vector3 origin = GetAvaragePosition();
-
         transform.GetComponent<Collider>().isTrigger = true;
-        _parts.gameObject.SetActive(true);
 
         for (int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(i).TryGetComponent(out Knife knife))
             {
-                knife.OnLevelPass();
+                knife.OnLogShatter();
+            }
+
+            if (transform.GetChild(i).TryGetComponent(out Apple apple))
+            {
+                apple.OnLogShatter();
             }
         }
-        
+
         transform.DetachChildren();
-        
-        foreach (var rigidbody in _rigidbodies)
+        Vector3 force = (transform.position).normalized * _explosionPower;
+        for (int i = 0; i < _logParts.Length; i++)
         {
-            Vector3 force = (rigidbody.transform.position - origin).normalized * _explosionPower;
+            Rigidbody rigidbody = _logParts[i].GetComponent<Rigidbody>();
             rigidbody.isKinematic = false;
-            rigidbody.AddForce(force, ForceMode.VelocityChange);
+            if (i == 0)
+            {
+                rigidbody.AddForce(force + new Vector3(-2, 2, 0), ForceMode.VelocityChange);
+                rigidbody.AddTorque(0, 0, Random.Range(5f, 10f), ForceMode.VelocityChange);
+            }
+            else
+            {
+                rigidbody.AddForce(force + new Vector3(2, 2, 0), ForceMode.VelocityChange);
+                rigidbody.AddTorque(0, 0, Random.Range(5f, 10f), ForceMode.VelocityChange);
+            }
         }
     }
 
@@ -49,27 +60,10 @@ public class Log : MonoBehaviour
         _rotationSpeed = new Vector3(0, _rotationIntesive.Evaluate(_currentTime), 0);
         _currentTime += Time.deltaTime;
     }
-    
+
     private void Update()
     {
         Rotate();
         SetRotationSpeed();
-    }
-
-    private void Awake()
-    {
-        _rigidbodies = _parts.GetComponentsInChildren<Rigidbody>();
-    }
-
-    private Vector3 GetAvaragePosition()
-    {
-        Vector3 position = Vector3.zero;
-        foreach (var rigidbody in _rigidbodies)
-        {
-            position += rigidbody.transform.position;
-        }
-
-        position /= _rigidbodies.Length;
-        return position;
     }
 }

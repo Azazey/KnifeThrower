@@ -21,7 +21,7 @@ public class Knife : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().AddForce(0, 20, 0, ForceMode.VelocityChange);
     }
     
-    public void OnLevelPass()
+    public void OnLogShatter()
     {
         _isFallingDown = true;
         gameObject.GetComponent<Rigidbody>().isKinematic = false;
