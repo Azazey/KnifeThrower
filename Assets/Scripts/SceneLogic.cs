@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,6 @@ public class SceneLogic : MonoBehaviour
     [SerializeField] private GameObject _passWindow;
     [SerializeField] private int _knifeNeedToPassLevel = 5;
     [SerializeField] private KnifeSpawner _knifeSpawner;
-    [SerializeField] private PlayerBelongsWriter _playerBelongsWriter;
     [SerializeField] private Log _log;
     
     private Knife _currentKnife;
@@ -20,6 +20,9 @@ public class SceneLogic : MonoBehaviour
     private bool _levelPassed;
 
     public Knife CurrentKnife => _currentKnife;
+    
+    public event Action OnScoreChange;
+    public event Action OnMoneyChange;
 
     public void SpawnKnife()
     {
@@ -86,6 +89,7 @@ public class SceneLogic : MonoBehaviour
         _passWindow.SetActive(false);
         SpawnKnife();
         _levelPassed = false;
+        PlayerBelongs.OnGameStart();
     }
 
     private void Update()

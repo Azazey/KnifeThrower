@@ -40,6 +40,7 @@ public class Knife : MonoBehaviour
             _isPinnedDown = true;
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             transform.parent = collision.gameObject.transform;
+            PlayerBelongs.AddScore(1);
         }
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Knife") && !_isFallingDown)

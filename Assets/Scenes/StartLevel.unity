@@ -1230,8 +1230,8 @@ Transform:
   m_LocalScale: {x: 2.0224, y: 0.3346154, z: 2.0224}
   m_Children:
   - {fileID: 6974874999670584588}
-  - {fileID: 8055554146191121999}
   - {fileID: 872305940}
+  - {fileID: 8055554146191121999}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -1299,7 +1299,9 @@ MonoBehaviour:
     m_PostInfinity: 1
     m_RotationOrder: 4
   _explosionPower: 5
-  _parts: {fileID: 6974874999670584588}
+  _logParts:
+  - {fileID: 4286220873765243094}
+  - {fileID: 4234170705845878838}
 --- !u!1 &571183891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1937,7 +1939,7 @@ Transform:
   - {fileID: 1393848208}
   - {fileID: 1801666405}
   m_Father: {fileID: 566732136}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &872305941
 MonoBehaviour:
@@ -2577,8 +2579,9 @@ MonoBehaviour:
   - {fileID: 566732137}
   _looseWindow: {fileID: 1573992445}
   _passWindow: {fileID: 304388418}
-  _knifeSpawner: {fileID: 259132333}
   _knifeNeedToPassLevel: 6
+  _knifeSpawner: {fileID: 259132333}
+  _playerBelongsWriter: {fileID: 0}
   _log: {fileID: 566732137}
 --- !u!4 &1347940238
 Transform:
@@ -3750,7 +3753,7 @@ GameObject:
   - component: {fileID: 387557951450233437}
   - component: {fileID: 1253776906985092053}
   m_Layer: 0
-  m_Name: Cylinder.001
+  m_Name: LogPart2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3882,7 +3885,7 @@ GameObject:
   - component: {fileID: 338501269566186552}
   - component: {fileID: 6194746640568966376}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: LogPart1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3953,7 +3956,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4562590150108434220, guid: ab96126621df6a348a11a50da2c48f95, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4562590150108434220, guid: ab96126621df6a348a11a50da2c48f95, type: 3}
       propertyPath: m_LocalPosition.x

@@ -20,6 +20,8 @@ public class Apple : MonoBehaviour
         {
             _collected = true;
             transform.parent = null;
+            PlayerBelongs.AddMoney(1);
+            PlayerBelongs.AddScore(2);
             Explode();
         }
     }

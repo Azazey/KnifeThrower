@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerBelongsWriter : MonoBehaviour
@@ -14,7 +15,7 @@ public class PlayerBelongsWriter : MonoBehaviour
     {
         if (_score)
         {
-            _score.text = "Score:" + PlayerBelongs.CurrentScore;
+            _score.text = "Score:" + PlayerPrefs.GetInt(PlayerBelongs.Score);
         }
     }
 
@@ -22,7 +23,8 @@ public class PlayerBelongsWriter : MonoBehaviour
     {
         if (_highScore)
         {
-            _highScore.text = "High Score:" + PlayerBelongs.HighScore;
+            PlayerBelongs.SetHighScore();
+            _highScore.text = "High Score:" + PlayerPrefs.GetInt(PlayerBelongs.HighScore);
         }
     }
 
@@ -30,7 +32,7 @@ public class PlayerBelongsWriter : MonoBehaviour
     {
         if (_money)
         {
-            _money.text = "Money:" + PlayerBelongs.Money;
+            _money.text = "Money:" + PlayerPrefs.GetInt(PlayerBelongs.Money);
         }
     }
 
