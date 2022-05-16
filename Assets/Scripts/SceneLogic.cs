@@ -20,9 +20,10 @@ public class SceneLogic : MonoBehaviour
     private bool _levelPassed;
 
     public Knife CurrentKnife => _currentKnife;
-    
-    public event Action OnScoreChange;
-    public event Action OnMoneyChange;
+
+    public int KnifeNeedToPassLevel => _knifeNeedToPassLevel;
+
+    public event Action OnKnifePinnedDown;
 
     public void SpawnKnife()
     {
@@ -61,7 +62,7 @@ public class SceneLogic : MonoBehaviour
     {
         if (_currentKnife != null)
         {
-            if (_currentKnife.CollidedWithKnife)
+            if (_currentKnife.CollidedWithKnife && !_levelPassed)
             {
                 ActivateLooseMenu();
             }
@@ -75,6 +76,7 @@ public class SceneLogic : MonoBehaviour
             if (_currentKnife.IsPinnedDown)
             {
                 _currentKnifeCount++;
+                OnKnifePinnedDown.Invoke();
                 if (_currentKnifeCount < _knifeNeedToPassLevel)
                 {
                     SpawnKnife(); 
@@ -83,7 +85,7 @@ public class SceneLogic : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         _looseWindow.SetActive(false);
         _passWindow.SetActive(false);
