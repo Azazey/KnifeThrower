@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b40d084d72c800e4cb2a7009de4657f8, type: 3}
-  m_Name: Standart Knife
+  m_Name: StandartKnife
   m_EditorClassIdentifier: 
   Name: Standart Knife
   Description: The first knife you ever met in your entire life. I guess?
