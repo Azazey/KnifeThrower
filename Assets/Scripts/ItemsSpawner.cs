@@ -8,18 +8,27 @@ public class ItemsSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _knifePrefab;
     [SerializeField] private GameObject _applePrefab;
-    [SerializeField] private int _appleSpawnChance;
-    [SerializeField] private int _knifeSpawnChance;
-    [SerializeField] private int _maxKnifes;
-    [SerializeField] private int _maxApples;
+    private int _appleSpawnChance;
+    private int _knifeSpawnChance;
+    private int _maxKnifes;
+    private int _maxApples;
 
     [SerializeField] private List<GameObject> _spawners = new List<GameObject>();
 
     private void Start()
     {
+        GetLevelSettings();
         InnitAllSpawns();
         TryToSpawnKnifes();
         TryToSpawnApples();
+    }
+
+    private void GetLevelSettings()
+    {
+        _appleSpawnChance = LevelStorage.Storage.GetCurrentLevel().SpawnAppleChance;
+        _knifeSpawnChance = LevelStorage.Storage.GetCurrentLevel().SpawnKnifeChance;
+        _maxKnifes = LevelStorage.Storage.GetCurrentLevel().MaxKnifeOnLevel;
+        _maxApples = LevelStorage.Storage.GetCurrentLevel().MaxAppleOnLevel;
     }
 
     private void InnitAllSpawns()

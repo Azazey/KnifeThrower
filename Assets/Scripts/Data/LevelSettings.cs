@@ -9,5 +9,7 @@ public class LevelSettings : ScriptableObject
     public int MaxKnifeOnLevel;
     public int SpawnKnifeChance;
     public int SpawnAppleChance;
+    public int KnifeNeedToPassLevel;
+    public Material LogMaterial;
     public AnimationCurve LogRotation;
 }

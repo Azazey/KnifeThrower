@@ -54,7 +54,6 @@ public class Knife : MonoBehaviour
     {
         if (collider.gameObject.layer == LayerMask.NameToLayer("Apple") && !_isFallingDown)
         {
-            Debug.Log("Apple was hitted");
             collider.GetComponent<Apple>().OnKnifeHit();
         }
     }

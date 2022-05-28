@@ -11,19 +11,27 @@ public class SceneLogic : MonoBehaviour
     [SerializeField] private MonoBehaviour[] _componentsToDisable;
     [SerializeField] private GameObject _looseWindow;
     [SerializeField] private GameObject _passWindow;
-    [SerializeField] private int _knifeNeedToPassLevel = 5;
     [SerializeField] private KnifeSpawner _knifeSpawner;
     [SerializeField] private Log _log;
+    [SerializeField] private float _looseMenuTimeDelay;
+    [SerializeField] private float _winMenuTimeDelay;
     
     private Knife _currentKnife;
     private int _currentKnifeCount;
+    private int _levelPassedInRow;
+    private int _knifeNeedToPassLevel;
     private bool _levelPassed;
+
+    private const string _levelCount = "levelCount";
+    
+    public string LevelCount => _levelCount;
 
     public Knife CurrentKnife => _currentKnife;
 
     public int KnifeNeedToPassLevel => _knifeNeedToPassLevel;
 
     public event Action OnKnifePinnedDown;
+    public event Action OnLevelPass;
 
     public void SpawnKnife()
     {
@@ -32,21 +40,32 @@ public class SceneLogic : MonoBehaviour
 
     public void ActivateLooseMenu()
     {
-        _looseWindow.SetActive(true);
         for (int i = 0; i < _componentsToDisable.Length; i++)
         {
             _componentsToDisable[i].enabled = false;
         }
+        
+        StartCoroutine(MenuDelay(_looseWindow, _looseMenuTimeDelay));
     }
 
     public void ActivatePassMenu()
     {
         _log.LogShatter();
-        _passWindow.SetActive(true);
         for (int i = 0; i < _componentsToDisable.Length; i++)
         {
             _componentsToDisable[i].enabled = false;
         }
+
+        _levelPassedInRow++;
+        PlayerPrefs.SetInt(_levelCount, _levelPassedInRow);
+        StartCoroutine(MenuDelay(_passWindow, _winMenuTimeDelay));
+    }
+
+    private IEnumerator MenuDelay(GameObject prefab, float timeDelay)
+    {
+        WaitForSeconds delay = new WaitForSeconds(timeDelay);
+        yield return delay;
+        prefab.SetActive(true);
     }
 
     private void CheckPassedLevel()
@@ -89,9 +108,18 @@ public class SceneLogic : MonoBehaviour
     {
         _looseWindow.SetActive(false);
         _passWindow.SetActive(false);
+        _knifeNeedToPassLevel = LevelStorage.Storage.GetCurrentLevel().KnifeNeedToPassLevel;
         SpawnKnife();
         _levelPassed = false;
-        PlayerBelongs.OnGameStart();
+        Debug.Log(LevelStorage.Storage.GetCurrentLevel().name);
+        if (LevelStorage.Storage.GetCurrentLevel() == LevelStorage.Storage.Levels[0])
+        {
+            PlayerBelongs.OnGameStart();
+            _levelPassedInRow = 1;
+            PlayerPrefs.SetInt(_levelCount, _levelPassedInRow);
+        }
+
+        _levelPassedInRow = PlayerPrefs.GetInt(_levelCount);
     }
 
     private void Update()

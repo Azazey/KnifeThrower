@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Log : MonoBehaviour
 {
-    [SerializeField] private AnimationCurve _rotationIntesive;
     [SerializeField] private float _explosionPower;
     [SerializeField] private Transform[] _logParts;
     
@@ -50,6 +50,14 @@ public class Log : MonoBehaviour
         }
     }
 
+    private void SetLogMaterial()
+    {
+        foreach (var logPart in _logParts)
+        {
+            logPart.GetComponent<MeshRenderer>().material = LevelStorage.Storage.GetCurrentLevel().LogMaterial;
+        }
+    }
+
     private void Rotate()
     {
         transform.Rotate(_rotationSpeed * Time.deltaTime);
@@ -57,7 +65,7 @@ public class Log : MonoBehaviour
 
     private void SetRotationSpeed()
     {
-        _rotationSpeed = new Vector3(0, _rotationIntesive.Evaluate(_currentTime), 0);
+        _rotationSpeed = new Vector3(0, LevelStorage.Storage.GetCurrentLevel().LogRotation.Evaluate(_currentTime), 0);
         _currentTime += Time.deltaTime;
     }
 
@@ -65,5 +73,10 @@ public class Log : MonoBehaviour
     {
         Rotate();
         SetRotationSpeed();
+    }
+
+    private void Awake()
+    {
+        SetLogMaterial();
     }
 }

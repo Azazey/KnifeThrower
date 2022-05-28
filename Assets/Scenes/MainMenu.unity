@@ -1039,6 +1039,7 @@ MonoBehaviour:
   _score: {fileID: 406395080}
   _highScore: {fileID: 628077926}
   _money: {fileID: 1667460055}
+  _sceneLogic: {fileID: 0}
 --- !u!1 &1787576630
 GameObject:
   m_ObjectHideFlags: 0

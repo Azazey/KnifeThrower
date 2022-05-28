@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ae66126bd9833849b53f5b8091a20e5, type: 3}
-  m_Name: StartLevel
+  m_Name: SecondTier5
   m_EditorClassIdentifier: 
   MaxAppleOnLevel: 3
   MaxKnifeOnLevel: 6
-  SpawnKnifeChance: 75
+  SpawnKnifeChance: 70
   SpawnAppleChance: 25
+  KnifeNeedToPassLevel: 6
+  LogMaterial: {fileID: 2100000, guid: 7b75de93db744494ba6400e17299b5d4, type: 2}
   LogRotation:
     serializedVersion: 2
     m_Curve:

@@ -9,7 +9,7 @@ public class KnifeStorage : MonoBehaviour
     
     public List<KnifeProperties> Knifes = new List<KnifeProperties>();
 
-    private const string currentKnife = "currentKnife";
+    private const string _currentKnife = "currentKnife";
 
     public List<KnifeProperties> GetKnifeList()
     {
@@ -23,11 +23,11 @@ public class KnifeStorage : MonoBehaviour
 
     public KnifeProperties GetCurrentKnife()
     {
-        if (!PlayerPrefs.HasKey(currentKnife))
+        if (!PlayerPrefs.HasKey(_currentKnife))
         {
             SetStandartKnife();
         }
-        return Knifes.Find(item => item.Name == PlayerPrefs.GetString("currentKnife"));
+        return Knifes.Find(item => item.Name == PlayerPrefs.GetString(_currentKnife));
     }
     
     private void Awake()
@@ -50,7 +50,7 @@ public class KnifeStorage : MonoBehaviour
 
     private void SetStandartKnife()
     {
-        PlayerPrefs.SetString(currentKnife, Knifes[0].Name);
+        PlayerPrefs.SetString(_currentKnife, Knifes[0].Name);
         PlayerPrefs.Save();
     }
 

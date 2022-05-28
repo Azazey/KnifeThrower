@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ae66126bd9833849b53f5b8091a20e5, type: 3}
+  m_Name: ThirdTier3
+  m_EditorClassIdentifier: 
+  MaxAppleOnLevel: 3
+  MaxKnifeOnLevel: 7
+  SpawnKnifeChance: 60
+  SpawnAppleChance: 25
+  KnifeNeedToPassLevel: 7
+  LogMaterial: {fileID: 2100000, guid: 7b75de93db744494ba6400e17299b5d4, type: 2}
+  LogRotation:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -29.821392
+      value: 0.061546504
+      inSlope: Infinity
+      outSlope: Infinity
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: -29.778265
+      value: 146.0764
+      inSlope: Infinity
+      outSlope: Infinity
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: -23.980385
+      value: 146.5353
+      inSlope: Infinity
+      outSlope: Infinity
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: -23.952965
+      value: -142.36966
+      inSlope: -Infinity
+      outSlope: -Infinity
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: -19.053085
+      value: -141.28024
+      inSlope: Infinity
+      outSlope: Infinity
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    m_PreInfinity: 1
+    m_PostInfinity: 1
+    m_RotationOrder: 4
