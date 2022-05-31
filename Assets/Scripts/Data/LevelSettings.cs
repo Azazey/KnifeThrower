@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum LevelType{
+    StartOfTier,
+    Between,
+    EndOfTier
+}
+
 [CreateAssetMenu(fileName = "New Level", menuName = "My Custom Stuff/Level Creator/Create new Level Settings")]
 public class LevelSettings : ScriptableObject
 {
@@ -12,4 +18,5 @@ public class LevelSettings : ScriptableObject
     public int KnifeNeedToPassLevel;
     public Material LogMaterial;
     public AnimationCurve LogRotation;
+    public LevelType LevelType;
 }

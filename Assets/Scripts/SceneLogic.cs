@@ -58,6 +58,7 @@ public class SceneLogic : MonoBehaviour
 
         _levelPassedInRow++;
         PlayerPrefs.SetInt(_levelCount, _levelPassedInRow);
+        OnLevelPass?.Invoke();
         StartCoroutine(MenuDelay(_passWindow, _winMenuTimeDelay));
     }
 
