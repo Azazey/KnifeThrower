@@ -13,6 +13,7 @@ public class StageUI : MonoBehaviour
     [SerializeField] private GameObject _stageStandartPrefab;
     [SerializeField] private GameObject _stageBossPrefab;
     [SerializeField] private float _timeToStageMove;
+    [SerializeField] private float _timeToPopUp;
 
     [SerializeField] private int _progress;
 
@@ -56,16 +57,23 @@ public class StageUI : MonoBehaviour
 
         GameObject stageBoss = Instantiate(_stageBossPrefab, _stageBar.transform);
         _stageBarParts.Add(stageBoss);
-        ChangeStageBarColour(PlayerPrefs.GetInt(_currentProgress));
+        ChangeStageBarColour(PlayerPrefs.GetInt(_currentProgress), true);
     }
 
-    private void ChangeStageBarColour(int count)
+    private void ChangeStageBarColour(int count, bool onStart)
     {
         if (count < PlayerPrefs.GetInt(_progressBar))
         {
             for (int i = 0; i < count; i++)
             {
-                _stageBarParts[i].GetComponent<Image>().color = Color.green;
+                if (i+1 == count && !onStart)
+                {
+                    StartCoroutine(PopUp(_stageBarParts[i], 0.5f));
+                }
+                else
+                {
+                    _stageBarParts[i].GetComponent<Image>().color = Color.green;   
+                }
             }
         }
         else if (count == PlayerPrefs.GetInt(_progressBar))
@@ -87,7 +95,7 @@ public class StageUI : MonoBehaviour
         else
         {
             Vector3 originalPos = new Vector3(-270f, 1168.8f, 0f);
-            ChangeStageBarColour(1);
+            ChangeStageBarColour(1, false);
             GameObject boss = _stageBarParts[PlayerPrefs.GetInt(_currentProgress) - 2];
             boss.GetComponent<Image>().color = Color.white;
             boss.transform.GetChild(0).GetComponent<Image>().color = Color.white;
@@ -104,13 +112,25 @@ public class StageUI : MonoBehaviour
         {
             _bossAppear = true;
         }
-        ChangeStageBarColour(PlayerPrefs.GetInt(_currentProgress));
+        
+        ChangeStageBarColour(PlayerPrefs.GetInt(_currentProgress), false);
         WriteStage();
     }
 
-    private IEnumerator PopUp()
+    private IEnumerator PopUp(GameObject stage, float timeDelay)
     {
-        yield return null;
+        for (float t = 0; t < _timeToPopUp; t += Time.deltaTime)
+        {
+            stage.transform.localScale = Vector3.Lerp(stage.transform.localScale, new Vector3(1.5f,1.5f, 1.5f), t / _timeToPopUp);
+            yield return null;
+        }
+        WaitForSeconds delay = new WaitForSeconds(timeDelay);
+        for (float t = 0; t < _timeToPopUp; t += Time.deltaTime)
+        {
+            stage.transform.localScale = Vector3.Lerp(stage.transform.localScale, new Vector3(1,1,1), t / _timeToPopUp);
+            yield return null;
+        }
+        stage.GetComponent<Image>().color = Color.green; 
     }
     
     private IEnumerator OnBossFight(Vector3 bossPosition)

@@ -9,12 +9,13 @@ using UnityEngine.UI;
 public class SceneLogic : MonoBehaviour
 {
     [SerializeField] private MonoBehaviour[] _componentsToDisable;
+    [SerializeField] private GameObject[] _objectsToHide;
     [SerializeField] private GameObject _looseWindow;
     [SerializeField] private GameObject _passWindow;
     [SerializeField] private KnifeSpawner _knifeSpawner;
     [SerializeField] private Log _log;
     [SerializeField] private float _looseMenuTimeDelay;
-    [SerializeField] private float _winMenuTimeDelay;
+    [SerializeField] private float _nextLevelTimeDelay;
     
     private Knife _currentKnife;
     private int _currentKnifeCount;
@@ -44,6 +45,11 @@ public class SceneLogic : MonoBehaviour
         {
             _componentsToDisable[i].enabled = false;
         }
+
+        foreach (GameObject oneObject in _objectsToHide)
+        {
+            oneObject.SetActive(false);
+        }
         
         StartCoroutine(MenuDelay(_looseWindow, _looseMenuTimeDelay));
     }
@@ -59,7 +65,24 @@ public class SceneLogic : MonoBehaviour
         _levelPassedInRow++;
         PlayerPrefs.SetInt(_levelCount, _levelPassedInRow);
         OnLevelPass?.Invoke();
-        StartCoroutine(MenuDelay(_passWindow, _winMenuTimeDelay));
+        StartCoroutine(NextLevel( _nextLevelTimeDelay));
+    }
+
+    private IEnumerator NextLevel(float timeDelay)
+    {
+        WaitForSeconds delay = new WaitForSeconds(timeDelay);
+        yield return delay;
+        SceneManager.LoadScene(2);
+        if (LevelStorage.Storage.GetCurrentLevel() !=
+            LevelStorage.Storage.GetLevelList()[LevelStorage.Storage.GetLevelList().Count - 1])
+        {
+            LevelStorage.Storage.SetCurrentLevel(LevelStorage.Storage.GetLevelList()
+                .FindIndex(item => item == LevelStorage.Storage.GetCurrentLevel()) + 1);
+        }
+        else
+        {
+            LevelStorage.Storage.SetCurrentLevel(LevelStorage.Storage.GetLevelList().Count - 6);
+        }
     }
 
     private IEnumerator MenuDelay(GameObject prefab, float timeDelay)

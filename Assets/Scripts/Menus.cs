@@ -11,20 +11,20 @@ public class Menus : MonoBehaviour
         LevelStorage.Storage.SetStartLevel();
     }
 
-    public void NextLevel()
-    {
-        SceneManager.LoadScene(2);
-        if (LevelStorage.Storage.GetCurrentLevel() !=
-            LevelStorage.Storage.GetLevelList()[LevelStorage.Storage.GetLevelList().Count - 1])
-        {
-            LevelStorage.Storage.SetCurrentLevel(LevelStorage.Storage.GetLevelList()
-                .FindIndex(item => item == LevelStorage.Storage.GetCurrentLevel()) + 1);
-        }
-        else
-        {
-            LevelStorage.Storage.SetCurrentLevel(LevelStorage.Storage.GetLevelList().Count - 6);
-        }
-    }
+    // public void NextLevel()
+    // {
+    //     SceneManager.LoadScene(2);
+    //     if (LevelStorage.Storage.GetCurrentLevel() !=
+    //         LevelStorage.Storage.GetLevelList()[LevelStorage.Storage.GetLevelList().Count - 1])
+    //     {
+    //         LevelStorage.Storage.SetCurrentLevel(LevelStorage.Storage.GetLevelList()
+    //             .FindIndex(item => item == LevelStorage.Storage.GetCurrentLevel()) + 1);
+    //     }
+    //     else
+    //     {
+    //         LevelStorage.Storage.SetCurrentLevel(LevelStorage.Storage.GetLevelList().Count - 6);
+    //     }
+    // }
 
     public void GoBackToMenu()
     {

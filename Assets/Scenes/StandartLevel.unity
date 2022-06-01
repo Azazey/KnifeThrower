@@ -842,6 +842,7 @@ MonoBehaviour:
   _stageStandartPrefab: {fileID: 2003833166663200134, guid: df765de810cfd7545b548e429fbe30b4, type: 3}
   _stageBossPrefab: {fileID: 6064331253751716443, guid: 82967bd7564bafd4999f689d21a546d9, type: 3}
   _timeToStageMove: 1
+  _timeToPopUp: 0.1
   _progress: 0
 --- !u!1 &185288535
 GameObject:
@@ -5434,12 +5435,15 @@ MonoBehaviour:
   - {fileID: 259132333}
   - {fileID: 566732137}
   - {fileID: 1516671588}
+  _objectsToHide:
+  - {fileID: 971091225}
+  - {fileID: 556632298}
   _looseWindow: {fileID: 1573992445}
   _passWindow: {fileID: 304388418}
   _knifeSpawner: {fileID: 259132333}
   _log: {fileID: 566732137}
   _looseMenuTimeDelay: 0.8
-  _winMenuTimeDelay: 1.5
+  _nextLevelTimeDelay: 2
 --- !u!4 &1347940238
 Transform:
   m_ObjectHideFlags: 0
