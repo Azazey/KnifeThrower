@@ -6,26 +6,30 @@ using UnityEngine.UI;
 public class SkinChanger : MonoBehaviour
 {
     [SerializeField] private KnifeSpawner _knifeSpawner;
-    [SerializeField] private Toggle _tooglePrefab;
+    [SerializeField] private SkinButton _buttonPrefab;
 
     private Knife _currentKnife;
 
     private void Start()
     {
-        CreateToggles();
-        _currentKnife = _knifeSpawner.SpawnKnife();
+        CreateSkinChangeButtons();
+        _currentKnife = _knifeSpawner.SpawnCurrentKnife();
     }
 
-    private void CreateToggles()
+    private void CreateSkinChangeButtons()
     {
-        for (int i = 0; i < KnifeStorage.Storage.GetKnifeList().Count; i++)
+        foreach (KnifeProperties knifePropertiese in KnifeStorage.Storage.GetKnifeList())
         {
-            Toggle toggle = Instantiate(_tooglePrefab, transform);
-            toggle.onValueChanged.AddListener(delegate {
-                SetKnifeProperties(toggle, i);
-            });
-
+            SkinButton skinButton = Instantiate(_buttonPrefab, transform);
+            skinButton.Init(knifePropertiese);
+            skinButton.SkinChanged += ReplaceKnife;
         }
+    }
+
+    private void ReplaceKnife()
+    {
+        Destroy(_currentKnife.gameObject);
+        _currentKnife = _knifeSpawner.SpawnCurrentKnife();
     }
 
     public void SetKnifeProperties(Toggle change, int number)

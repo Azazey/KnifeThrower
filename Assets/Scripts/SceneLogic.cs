@@ -36,7 +36,7 @@ public class SceneLogic : MonoBehaviour
 
     public void SpawnKnife()
     {
-        _currentKnife = _knifeSpawner.SpawnKnife();
+        _currentKnife = _knifeSpawner.SpawnCurrentKnife();
     }
 
     public void ActivateLooseMenu()

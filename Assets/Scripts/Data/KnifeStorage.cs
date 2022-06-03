@@ -29,6 +29,12 @@ public class KnifeStorage : MonoBehaviour
         }
         return Knifes.Find(item => item.Name == PlayerPrefs.GetString(_currentKnife));
     }
+
+    public void SetCurrentKnife(KnifeProperties knifeProperties)
+    {
+        PlayerPrefs.SetString(_currentKnife, knifeProperties.Name);
+        PlayerPrefs.Save();
+    }
     
     private void Awake()
     {

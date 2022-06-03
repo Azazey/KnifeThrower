@@ -6,7 +6,7 @@ public class KnifeSpawner : MonoBehaviour
 {
     [SerializeField] private Knife _knifePrefab;
 
-    public Knife SpawnKnife()
+    public Knife SpawnCurrentKnife()
     {
         Knife knife = Instantiate(_knifePrefab, transform.position, transform.rotation);
         return knife;
