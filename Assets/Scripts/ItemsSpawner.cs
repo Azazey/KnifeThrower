@@ -8,6 +8,8 @@ public class ItemsSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _knifePrefab;
     [SerializeField] private GameObject _applePrefab;
+    [SerializeField] private KnifeProperties _knifeSettingsToSpawn;
+    
     private int _appleSpawnChance;
     private int _knifeSpawnChance;
     private int _maxKnifes;
@@ -78,6 +80,12 @@ public class ItemsSpawner : MonoBehaviour
         int itemHolster = Random.Range(0, _spawners.Count);
         GameObject item = Instantiate(prefab, _spawners[itemHolster].transform.position,
             _spawners[itemHolster].transform.rotation);
+        if (item.GetComponent<Knife>())
+        {
+            item.GetComponent<Knife>()
+                .Init(_knifeSettingsToSpawn);
+        }
+
         item.transform.parent = transform.parent;
         _spawners.Remove(_spawners[itemHolster]);
     }

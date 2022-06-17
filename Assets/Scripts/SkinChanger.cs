@@ -7,6 +7,7 @@ public class SkinChanger : MonoBehaviour
 {
     [SerializeField] private KnifeSpawner _knifeSpawner;
     [SerializeField] private SkinButton _buttonPrefab;
+    [SerializeField] private GameObject _Button;
 
     private Knife _currentKnife;
 
@@ -26,15 +27,15 @@ public class SkinChanger : MonoBehaviour
         }
     }
 
-    private void ReplaceKnife()
+    private void ReplaceKnife(KnifeProperties knifeProperties)
     {
         Destroy(_currentKnife.gameObject);
-        _currentKnife = _knifeSpawner.SpawnCurrentKnife();
+        _currentKnife = _knifeSpawner.SpawnKnifeInSkinMenu(knifeProperties);
     }
 
-    public void SetKnifeProperties(Toggle change, int number)
+    public void SetKnifeProperties(KnifeProperties knifeProperties)
     {
-        Debug.Log("Button pressed:" + number);
+        Debug.Log("Button pressed:");
         // Destroy(_currentKnife.gameObject);
         // _currentKnife = _knifeSpawner.SpawnKnife();
     }

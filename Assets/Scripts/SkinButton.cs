@@ -10,8 +10,11 @@ public class SkinButton : MonoBehaviour
     [SerializeField] private Button _button;
 
     private KnifeProperties _knifeProperties;
-    public event Action SkinChanged;
-    
+
+    public KnifeProperties KnifeProperties => _knifeProperties;
+
+    public event Action<KnifeProperties> SkinChanged;
+
     public void Init(KnifeProperties knifeProperties)
     {
         _knifeIcon.sprite = knifeProperties.Sprite;
@@ -22,6 +25,6 @@ public class SkinButton : MonoBehaviour
     private void ChangeSkin()
     {
         KnifeStorage.Storage.SetCurrentKnife(_knifeProperties);
-        SkinChanged?.Invoke();
+        SkinChanged?.Invoke(_knifeProperties);
     }
 }

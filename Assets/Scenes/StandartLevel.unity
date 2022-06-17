@@ -3643,6 +3643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _knifePrefab: {fileID: 4741159033103318418, guid: ac7d7277b300bc3499ffd45807f1df09, type: 3}
   _applePrefab: {fileID: 4562590150108434223, guid: ab96126621df6a348a11a50da2c48f95, type: 3}
+  _knifeSettingsToSpawn: {fileID: 11400000, guid: 229379c37643ee44e8f383846147716d, type: 2}
   _spawners: []
 --- !u!1 &882145699
 GameObject:

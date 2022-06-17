@@ -60,7 +60,7 @@ public class Knife : MonoBehaviour
     
     private void Start()
     {
-        Init(KnifeStorage.Storage.GetCurrentKnife());
+        
     }
 
     private void Ricochet(float x, float y, float z)
