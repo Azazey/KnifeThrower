@@ -32,6 +32,16 @@ public static class PlayerBelongs
         }
     }
 
+    public static void OnKnifeBuy(int moneyCost)
+    {
+        int money = PlayerPrefs.GetInt(Money);
+        if (moneyCost <= money)
+        {
+            money -= moneyCost;
+        }
+        PlayerPrefs.SetInt(Money, money);
+    }
+
     public static void ResetAllBelongs()
     {
         PlayerPrefs.SetInt(Score, _resetValue);

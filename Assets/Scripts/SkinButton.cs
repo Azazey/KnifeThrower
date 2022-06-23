@@ -24,7 +24,7 @@ public class SkinButton : MonoBehaviour
 
     private void ChangeSkin()
     {
-        KnifeStorage.Storage.SetCurrentKnife(_knifeProperties);
+        // KnifeStorage.Storage.SetCurrentKnife(_knifeProperties);
         SkinChanged?.Invoke(_knifeProperties);
     }
 }
