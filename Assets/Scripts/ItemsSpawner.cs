@@ -84,6 +84,7 @@ public class ItemsSpawner : MonoBehaviour
         {
             item.GetComponent<Knife>()
                 .Init(_knifeSettingsToSpawn);
+            item.GetComponent<Knife>().IsPinnedDown = true;
         }
 
         item.transform.parent = transform.parent;

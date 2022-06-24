@@ -19,4 +19,4 @@ MonoBehaviour:
   Sprite: {fileID: 0}
   Unlocked: 0
   Boughtable: 1
-  MoneyCost: 0
+  MoneyCost: 10

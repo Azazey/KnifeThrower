@@ -6,14 +6,19 @@ using Random = UnityEngine.Random;
 
 public class Knife : MonoBehaviour
 {
-    private bool _isPinnedDown = false;
-    private bool _collidedWithKnife = false;
-    private bool _isFallingDown = false;
+    private bool _isPinnedDown;
+    private bool _collidedWithKnife;
+    private bool _isFallingDown;
 
     public KnifeProperties KnifeProperties;
-    public bool IsPinnedDown => _isPinnedDown;
+
+    public bool IsPinnedDown
+    {
+        get => _isPinnedDown;
+        set => _isPinnedDown = value;
+    }
+
     public bool CollidedWithKnife => _collidedWithKnife;
-    public bool IsFallingDown => _isFallingDown;
 
     public void Throw()
     {
@@ -31,6 +36,9 @@ public class Knife : MonoBehaviour
     public void Init(KnifeProperties knifeProperties)
     {
         Instantiate(knifeProperties.Prefab, transform.position, transform.rotation, transform);
+        _isPinnedDown = false;
+        _collidedWithKnife = false;
+        _isFallingDown = false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -47,6 +55,11 @@ public class Knife : MonoBehaviour
         {
             _collidedWithKnife = true;
             Ricochet(0, -1, -5);
+            if (!_isPinnedDown)
+            {
+                Vibration.Vibrate();
+                Debug.Log("Vibrate");
+            }
         }
     }
 
@@ -56,11 +69,6 @@ public class Knife : MonoBehaviour
         {
             collider.GetComponent<Apple>().OnKnifeHit();
         }
-    }
-    
-    private void Start()
-    {
-        
     }
 
     private void Ricochet(float x, float y, float z)
