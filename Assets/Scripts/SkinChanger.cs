@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,9 +17,9 @@ public class SkinChanger : MonoBehaviour
 
     private Knife _currentKnife;
     private KnifeProperties _currentKnifeToChange;
-    
-    [SerializeField] private List<GameObject> _buttons = new List<GameObject>();
 
+    private List<GameObject> _buttons = new List<GameObject>();
+    
     private void Start()
     {
         CreateSkinChangeButtons();
@@ -68,11 +69,12 @@ public class SkinChanger : MonoBehaviour
                 _button.GetComponentInChildren<Text>().text = "Select";
             }
         }
+
         _button.onClick.RemoveAllListeners();
         _button.onClick.AddListener(SetKnifeProperties);
         LayoutRebuilder.ForceRebuildLayoutImmediate(_content);
     }
-    
+
     public void SetKnifeProperties()
     {
         Debug.Log("Button pressed:" + _currentKnifeToChange.Name);
@@ -104,6 +106,7 @@ public class SkinChanger : MonoBehaviour
     private void BuyAKnife()
     {
         _currentKnifeToChange.Unlocked = true;
+        PlayerPrefs.SetInt(_currentKnifeToChange.name, Convert.ToInt32(_currentKnifeToChange.Unlocked));
         PlayerBelongs.OnKnifeBuy(_currentKnifeToChange.MoneyCost);
         _playerBelongsWriter.WriteMoney();
     }
@@ -124,5 +127,4 @@ public class SkinChanger : MonoBehaviour
             _knifeDesc.text = knifeProperties.Description + "\r\n" + "It can't be bought!";
         }
     }
-
 }

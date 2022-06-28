@@ -9,6 +9,7 @@ public class Log : MonoBehaviour
 {
     [SerializeField] private float _explosionPower;
     [SerializeField] private Transform[] _logParts;
+    [SerializeField] private AudioSource _logShatterSound;
     
     private Vector3 _rotationSpeed;
     private float _currentTime;
@@ -16,6 +17,7 @@ public class Log : MonoBehaviour
 
     public void LogShatter()
     {
+        _logShatterSound.Play();
         transform.GetComponent<Collider>().isTrigger = true;
 
         for (int i = 0; i < transform.childCount; i++)
@@ -23,6 +25,10 @@ public class Log : MonoBehaviour
             if (transform.GetChild(i).TryGetComponent(out Knife knife))
             {
                 knife.OnLogShatter();
+                if (knife.Effect)
+                {
+                    knife.Effect.transform.parent = null;   
+                }
             }
 
             if (transform.GetChild(i).TryGetComponent(out Apple apple))

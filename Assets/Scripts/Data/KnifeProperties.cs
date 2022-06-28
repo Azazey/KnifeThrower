@@ -10,6 +10,7 @@ public class KnifeProperties : ScriptableObject
     public string Description;
     public GameObject Prefab;
     public Sprite Sprite;
+    public GameObject EffectPrefab;
     public bool Unlocked;
     public bool Boughtable;
     public int MoneyCost;

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Apple : MonoBehaviour
 {
+    [SerializeField] private AudioSource _appleHitSound;
     [SerializeField] private float _explosionPower;
     [SerializeField] private Transform _parts;
     
@@ -33,6 +34,7 @@ public class Apple : MonoBehaviour
 
     private void Explode()
     {
+        _appleHitSound.Play();
         gameObject.GetComponent<Rigidbody>().isKinematic = false;
 
         Vector3 origin = GetAvaragePosition();

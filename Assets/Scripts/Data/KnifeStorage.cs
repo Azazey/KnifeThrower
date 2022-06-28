@@ -65,6 +65,14 @@ public class KnifeStorage : MonoBehaviour
         foreach (KnifeProperties knife in Resources.LoadAll<KnifeProperties>("Knifes")) 
         {
             Knifes.Add(knife);
+            if (!PlayerPrefs.HasKey(knife.name))
+            {
+                PlayerPrefs.SetInt(knife.name, Convert.ToInt32(knife.Unlocked));   
+            }
+            else
+            {
+                knife.Unlocked = Convert.ToBoolean(PlayerPrefs.GetInt(knife.name));
+            }
             // Debug.Log("Objects was found: " + knife.name);
         }
     }

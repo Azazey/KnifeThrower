@@ -10,18 +10,20 @@ public class SceneLogic : MonoBehaviour
 {
     [SerializeField] private MonoBehaviour[] _componentsToDisable;
     [SerializeField] private GameObject[] _objectsToHide;
+    [SerializeField] private AudioSource _fallSound;
     [SerializeField] private GameObject _looseWindow;
     [SerializeField] private GameObject _passWindow;
     [SerializeField] private KnifeSpawner _knifeSpawner;
     [SerializeField] private Log _log;
     [SerializeField] private float _looseMenuTimeDelay;
     [SerializeField] private float _nextLevelTimeDelay;
-    
+
     private Knife _currentKnife;
     private int _currentKnifeCount;
     private int _levelPassedInRow;
     private int _knifeNeedToPassLevel;
     private bool _levelPassed;
+    private bool _levelFailed;
 
     private const string _levelCount = "levelCount";
     
@@ -41,6 +43,7 @@ public class SceneLogic : MonoBehaviour
 
     public void ActivateLooseMenu()
     {
+        _fallSound.Play();
         for (int i = 0; i < _componentsToDisable.Length; i++)
         {
             _componentsToDisable[i].enabled = false;
@@ -107,7 +110,11 @@ public class SceneLogic : MonoBehaviour
         {
             if (_currentKnife.CollidedWithKnife && !_levelPassed)
             {
-                ActivateLooseMenu();
+                if (!_levelFailed)
+                {
+                    ActivateLooseMenu();
+                    _levelFailed = true;
+                }
             }
         }
     }
@@ -144,6 +151,7 @@ public class SceneLogic : MonoBehaviour
         }
 
         _levelPassedInRow = PlayerPrefs.GetInt(_levelCount);
+        _levelFailed = false;
     }
 
     private void Update()
