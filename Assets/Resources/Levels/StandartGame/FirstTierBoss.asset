@@ -19,7 +19,7 @@ MonoBehaviour:
   KnifeNeedToPassLevel: 6
   LogMaterial: {fileID: 2100000, guid: 802da479151d4d14e835c0ec3e8b50fb, type: 2}
   BreakSound: {fileID: 8300000, guid: ad05e35ae7d564342b6ff23e93a443ed, type: 3}
-  OpenKnife: {fileID: 0}
+  OpenKnife: {fileID: 11400000, guid: e2eb8c132ff0a95489d007da9e93e879, type: 2}
   LogRotation:
     serializedVersion: 2
     m_Curve:

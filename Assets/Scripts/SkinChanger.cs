@@ -98,6 +98,12 @@ public class SkinChanger : MonoBehaviour
                 _buttonText.text = "Select";
                 _buttonText.alpha = 1f;
             }
+            else
+            {
+                _button.interactable = false;
+                _buttonText.text = "Not enough";
+                _buttonText.alpha = 0.5f;
+            }
         }
         else if (_currentKnifeToChange.Unlocked)
         {
@@ -106,7 +112,7 @@ public class SkinChanger : MonoBehaviour
             _button.interactable = false;
         }
 
-        if (_currentKnifeToChange != KnifeStorage.Storage.GetCurrentKnife()) return;
+        if (_currentKnifeToChange != KnifeStorage.Storage.GetCurrentKnife() && !_currentKnifeToChange.Unlocked) return;
         _button.interactable = false;
         _buttonText.text = "Selected";
         _buttonText.alpha = 0.5f;

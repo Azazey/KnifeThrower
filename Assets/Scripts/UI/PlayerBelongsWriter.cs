@@ -26,7 +26,7 @@ public class PlayerBelongsWriter : MonoBehaviour
         if (_highScore)
         {
             PlayerBelongs.SetHighScore();
-            _highScore.text = "High Score:" + PlayerPrefs.GetInt(PlayerBelongs.HighScore);
+            _highScore.text = "Best Score:" + PlayerPrefs.GetInt(PlayerBelongs.HighScore);
         }
     }
 
@@ -34,7 +34,7 @@ public class PlayerBelongsWriter : MonoBehaviour
     {
         if (_money)
         {
-            _money.text = "Money:" + PlayerPrefs.GetInt(PlayerBelongs.Money);
+            _money.text = PlayerPrefs.GetInt(PlayerBelongs.Money).ToString();
         }
     }
 

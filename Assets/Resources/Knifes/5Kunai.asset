@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40d084d72c800e4cb2a7009de4657f8, type: 3}
+  m_Name: 5Kunai
+  m_EditorClassIdentifier: 
+  Name: Kunai
+  Description: You always want to be a real ninja? Well atleast you can try it here.
+  Prefab: {fileID: 1763812949866454623, guid: effb6ac8c745df04a84be3bc5f63b40e, type: 3}
+  Sprite: {fileID: 21300000, guid: 55444e527cfaff6409ea6f1e1f68dafa, type: 3}
+  EffectPrefab: {fileID: 0}
+  Unlocked: 0
+  Boughtable: 1
+  MoneyCost: 500

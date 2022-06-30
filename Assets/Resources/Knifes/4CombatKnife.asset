@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40d084d72c800e4cb2a7009de4657f8, type: 3}
+  m_Name: 4CombatKnife
+  m_EditorClassIdentifier: 
+  Name: Combat Knife
+  Description: 'This knife you want to use in any situation. '
+  Prefab: {fileID: 1012940223289840650, guid: 78a05cc14785aa343b0f85ae95375925, type: 3}
+  Sprite: {fileID: 21300000, guid: 322cb5a26f515ef42acd29523aba38fc, type: 3}
+  EffectPrefab: {fileID: 0}
+  Unlocked: 0
+  Boughtable: 1
+  MoneyCost: 150
