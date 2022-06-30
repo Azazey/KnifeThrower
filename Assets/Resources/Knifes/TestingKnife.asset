@@ -17,6 +17,7 @@ MonoBehaviour:
     wrong.
   Prefab: {fileID: 8871305028553571659, guid: 8b36109d809370843bd613edff2b675d, type: 3}
   Sprite: {fileID: 0}
+  EffectPrefab: {fileID: 0}
   Unlocked: 0
-  Boughtable: 1
+  Boughtable: 0
   MoneyCost: 10

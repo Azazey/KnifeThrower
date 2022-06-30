@@ -12,7 +12,6 @@ public class SceneLogic : MonoBehaviour
     [SerializeField] private GameObject[] _objectsToHide;
     [SerializeField] private AudioSource _fallSound;
     [SerializeField] private GameObject _looseWindow;
-    [SerializeField] private GameObject _passWindow;
     [SerializeField] private KnifeSpawner _knifeSpawner;
     [SerializeField] private Log _log;
     [SerializeField] private float _looseMenuTimeDelay;
@@ -26,7 +25,7 @@ public class SceneLogic : MonoBehaviour
     private bool _levelFailed;
 
     private const string _levelCount = "levelCount";
-    
+
     public string LevelCount => _levelCount;
 
     public Knife CurrentKnife => _currentKnife;
@@ -39,6 +38,9 @@ public class SceneLogic : MonoBehaviour
     public void SpawnKnife()
     {
         _currentKnife = _knifeSpawner.SpawnCurrentKnife();
+        _currentKnife.OnKnifeHit += CheckLoosing;
+        _currentKnife.OnKnifeHit += CheckPassedLevel;
+        _currentKnife.OnKnifeHit += TryToSpawnKnife;
     }
 
     public void ActivateLooseMenu()
@@ -53,13 +55,22 @@ public class SceneLogic : MonoBehaviour
         {
             oneObject.SetActive(false);
         }
-        
+
         StartCoroutine(MenuDelay(_looseWindow, _looseMenuTimeDelay));
     }
 
-    public void ActivatePassMenu()
+    public void PassLevel()
     {
         _log.LogShatter();
+        if (LevelStorage.Storage.GetCurrentLevel().OpenKnife &&
+            !Convert.ToBoolean(PlayerPrefs.GetInt(LevelStorage.Storage.GetCurrentLevel().OpenKnife.name)))
+        {
+            LevelStorage.Storage.GetCurrentLevel().OpenKnife.Unlocked = true;
+            PlayerPrefs.SetInt(LevelStorage.Storage.GetCurrentLevel().OpenKnife.name,
+                Convert.ToInt32(LevelStorage.Storage.GetCurrentLevel().OpenKnife.Unlocked));
+            Debug.Log(PlayerPrefs.GetInt(LevelStorage.Storage.GetCurrentLevel().OpenKnife.name));
+        }
+
         for (int i = 0; i < _componentsToDisable.Length; i++)
         {
             _componentsToDisable[i].enabled = false;
@@ -68,7 +79,7 @@ public class SceneLogic : MonoBehaviour
         _levelPassedInRow++;
         PlayerPrefs.SetInt(_levelCount, _levelPassedInRow);
         OnLevelPass?.Invoke();
-        StartCoroutine(NextLevel( _nextLevelTimeDelay));
+        StartCoroutine(NextLevel(_nextLevelTimeDelay));
     }
 
     private IEnumerator NextLevel(float timeDelay)
@@ -80,7 +91,8 @@ public class SceneLogic : MonoBehaviour
             LevelStorage.Storage.GetLevelList()[LevelStorage.Storage.GetLevelList().Count - 1])
         {
             LevelStorage.Storage.SetCurrentLevel(LevelStorage.Storage.GetLevelList()
-                .FindIndex(item => item == LevelStorage.Storage.GetCurrentLevel()) + 1);
+                .FindIndex(item =>
+                    item == LevelStorage.Storage.GetCurrentLevel()) + 1);
         }
         else
         {
@@ -99,7 +111,7 @@ public class SceneLogic : MonoBehaviour
     {
         if (_currentKnifeCount == _knifeNeedToPassLevel && !_levelPassed)
         {
-            ActivatePassMenu();
+            PassLevel();
             _levelPassed = true;
         }
     }
@@ -126,10 +138,11 @@ public class SceneLogic : MonoBehaviour
             if (_currentKnife.IsPinnedDown)
             {
                 _currentKnifeCount++;
+                CheckPassedLevel();
                 OnKnifePinnedDown.Invoke();
                 if (_currentKnifeCount < _knifeNeedToPassLevel)
                 {
-                    SpawnKnife(); 
+                    SpawnKnife();
                 }
             }
         }
@@ -138,7 +151,6 @@ public class SceneLogic : MonoBehaviour
     private void Awake()
     {
         _looseWindow.SetActive(false);
-        _passWindow.SetActive(false);
         _knifeNeedToPassLevel = LevelStorage.Storage.GetCurrentLevel().KnifeNeedToPassLevel;
         SpawnKnife();
         _levelPassed = false;
@@ -152,12 +164,15 @@ public class SceneLogic : MonoBehaviour
 
         _levelPassedInRow = PlayerPrefs.GetInt(_levelCount);
         _levelFailed = false;
+        _currentKnife.OnKnifeHit += CheckLoosing;
+        _currentKnife.OnKnifeHit += CheckPassedLevel;
+        _currentKnife.OnKnifeHit += TryToSpawnKnife;
     }
 
     private void Update()
     {
-        TryToSpawnKnife();
-        CheckPassedLevel();
-        CheckLoosing();
+        // TryToSpawnKnife();
+        // CheckPassedLevel();
+        // CheckLoosing();
     }
 }

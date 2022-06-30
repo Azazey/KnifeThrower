@@ -10,7 +10,8 @@ public class Knife : MonoBehaviour
     [SerializeField] private AudioSource _throwSound;
     [SerializeField] private AudioSource _hitSound;
     [SerializeField] private AudioSource _fallSound;
-    [SerializeField]private GameObject _effectPrefab;
+    [SerializeField] private GameObject _effectPrefab;
+    [SerializeField] private Transform _effectSpawnPoint;
     
     private bool _isPinnedDown;
     private bool _collidedWithKnife;
@@ -30,6 +31,8 @@ public class Knife : MonoBehaviour
     public AudioSource FallSound => _fallSound;
 
     public bool CollidedWithKnife => _collidedWithKnife;
+    
+    public event Action OnKnifeHit;
 
     public void Throw()
     {
@@ -67,11 +70,12 @@ public class Knife : MonoBehaviour
         {
             _isPinnedDown = true;
             _hitSound.Play();
-            _effect = Instantiate(_effectPrefab);
+            _effect = Instantiate(_effectPrefab, _effectSpawnPoint.position, Quaternion.identity);
             _effect.transform.parent = transform;
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             transform.parent = collision.gameObject.transform;
             PlayerBelongs.AddScore(1);
+            OnKnifeHit?.Invoke();
         }
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Knife") && !_isFallingDown)
@@ -81,9 +85,10 @@ public class Knife : MonoBehaviour
             if (!_isPinnedDown)
             {
                 Vibration.Vibrate();
-                Instantiate(_effectPrefab);
+                Instantiate(_effectPrefab, _effectSpawnPoint.position, Quaternion.identity);
                 Debug.Log("Vibrate");
             }
+            OnKnifeHit?.Invoke();
         }
     }
 

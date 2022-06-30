@@ -1,15 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerBelongsWriter : MonoBehaviour
 {
-    [SerializeField] private Text _score;
-    [SerializeField] private Text _highScore;
-    [SerializeField] private Text _money;
+    [SerializeField] private TextMeshProUGUI _score;
+    [SerializeField] private TextMeshProUGUI _highScore;
+    [SerializeField] private TextMeshProUGUI _money;
     [SerializeField] private SceneLogic _sceneLogic;
 
     public void WriteScore()

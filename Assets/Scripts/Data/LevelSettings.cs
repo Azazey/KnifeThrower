@@ -17,6 +17,8 @@ public class LevelSettings : ScriptableObject
     public int SpawnAppleChance;
     public int KnifeNeedToPassLevel;
     public Material LogMaterial;
+    public AudioClip BreakSound;
+    public KnifeProperties OpenKnife;
     public AnimationCurve LogRotation;
     public LevelType LevelType;
 }

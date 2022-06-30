@@ -17,7 +17,9 @@ MonoBehaviour:
   SpawnKnifeChance: 60
   SpawnAppleChance: 25
   KnifeNeedToPassLevel: 7
-  LogMaterial: {fileID: 2100000, guid: 7b75de93db744494ba6400e17299b5d4, type: 2}
+  LogMaterial: {fileID: 2100000, guid: 802da479151d4d14e835c0ec3e8b50fb, type: 2}
+  BreakSound: {fileID: 8300000, guid: ad05e35ae7d564342b6ff23e93a443ed, type: 3}
+  OpenKnife: {fileID: 11400000, guid: e45e5051d46002d4b8f1eb5c6e54a8ce, type: 2}
   LogRotation:
     serializedVersion: 2
     m_Curve:

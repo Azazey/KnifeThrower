@@ -84,5 +84,9 @@ public class Log : MonoBehaviour
     private void Awake()
     {
         SetLogMaterial();
+        if (LevelStorage.Storage.GetCurrentLevel().BreakSound)
+        {
+            _logShatterSound.clip = LevelStorage.Storage.GetCurrentLevel().BreakSound;
+        }
     }
 }

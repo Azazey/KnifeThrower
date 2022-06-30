@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,8 +12,9 @@ public class SkinChanger : MonoBehaviour
     [SerializeField] private Button _button;
     [SerializeField] private GameObject _spawnPosition;
     [SerializeField] private PlayerBelongsWriter _playerBelongsWriter;
-    [SerializeField] private Text _knifeName;
-    [SerializeField] private Text _knifeDesc;
+    [SerializeField] private TextMeshProUGUI _knifeName;
+    [SerializeField] private TextMeshProUGUI _knifeDesc;
+    [SerializeField] private TextMeshProUGUI _buttonText;
     [SerializeField] private RectTransform _content;
 
     private Knife _currentKnife;
@@ -25,7 +27,8 @@ public class SkinChanger : MonoBehaviour
         CreateSkinChangeButtons();
         _currentKnife = _knifeSpawner.SpawnCurrentKnife();
         _button.interactable = false;
-        _button.GetComponentInChildren<Text>().text = "Selected";
+        _buttonText.text = "Selected";
+        _buttonText.alpha = 0.5f;
         UpdateKnifeInfo(KnifeStorage.Storage.GetCurrentKnife());
     }
 
@@ -48,12 +51,14 @@ public class SkinChanger : MonoBehaviour
         UpdateKnifeInfo(_currentKnifeToChange);
         if (!knifeProperties.Unlocked && knifeProperties.Boughtable)
         {
-            _button.GetComponentInChildren<Text>().text = "Buy";
+            _buttonText.text = "Buy";
+            _buttonText.alpha = 1;
             _button.interactable = true;
         }
         else if (!knifeProperties.Boughtable && !knifeProperties.Unlocked)
         {
-            _button.GetComponentInChildren<Text>().text = "Locked";
+            _buttonText.text = "Locked";
+            _buttonText.alpha = 0.5f;
             _button.interactable = false;
         }
         else
@@ -61,12 +66,14 @@ public class SkinChanger : MonoBehaviour
             if (knifeProperties == KnifeStorage.Storage.GetCurrentKnife())
             {
                 _button.interactable = false;
-                _button.GetComponentInChildren<Text>().text = "Selected";
+                _buttonText.text = "Selected";
+                _buttonText.alpha = 0.5f;
             }
             else
             {
                 _button.interactable = true;
-                _button.GetComponentInChildren<Text>().text = "Select";
+                _buttonText.text = "Select";
+                _buttonText.alpha = 1f;
             }
         }
 
@@ -88,7 +95,8 @@ public class SkinChanger : MonoBehaviour
             else if (_currentKnifeToChange.MoneyCost <= PlayerPrefs.GetInt(PlayerBelongs.Money))
             {
                 BuyAKnife();
-                _button.GetComponentInChildren<Text>().text = "Select";
+                _buttonText.text = "Select";
+                _buttonText.alpha = 1f;
             }
         }
         else if (_currentKnifeToChange.Unlocked)
@@ -100,7 +108,8 @@ public class SkinChanger : MonoBehaviour
 
         if (_currentKnifeToChange != KnifeStorage.Storage.GetCurrentKnife()) return;
         _button.interactable = false;
-        _button.GetComponentInChildren<Text>().text = "Selected";
+        _buttonText.text = "Selected";
+        _buttonText.alpha = 0.5f;
     }
 
     private void BuyAKnife()
@@ -118,7 +127,7 @@ public class SkinChanger : MonoBehaviour
         {
             _knifeDesc.text = knifeProperties.Description + "\r\n" + "Knife cost:" + knifeProperties.MoneyCost;
         }
-        else if (knifeProperties.Boughtable && knifeProperties.Unlocked)
+        else if (knifeProperties.Unlocked)
         {
             _knifeDesc.text = knifeProperties.Description;
         }

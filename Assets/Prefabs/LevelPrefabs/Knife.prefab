@@ -82,6 +82,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1831318579866676080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6468765814972865959}
+  m_Layer: 0
+  m_Name: EffectSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6468765814972865959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831318579866676080}
+  m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
+  m_LocalPosition: {x: -0.023, y: 0.09, z: 0.0004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8436800449847524153}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4129806981446734159
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,6 +482,7 @@ Transform:
   - {fileID: 2667219168604123758}
   - {fileID: 457090350593545641}
   - {fileID: 8043078874386718875}
+  - {fileID: 6468765814972865959}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
@@ -487,6 +518,7 @@ MonoBehaviour:
   _hitSound: {fileID: 8178845401375336985}
   _fallSound: {fileID: 0}
   _effectPrefab: {fileID: 4511014209826620661, guid: 25212e2f943c5a24aab669505a97822e, type: 3}
+  _effectSpawnPoint: {fileID: 6468765814972865959}
   KnifeProperties: {fileID: 0}
 --- !u!65 &7974158775524180075
 BoxCollider:

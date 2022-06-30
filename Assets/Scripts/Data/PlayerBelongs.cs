@@ -49,7 +49,7 @@ public static class PlayerBelongs
         PlayerPrefs.SetInt(HighScore, _resetValue);
     }
 
-    public static void ResetScore()
+    public static void ResetHighScore()
     {
         PlayerPrefs.SetInt(HighScore, _resetValue);
     }

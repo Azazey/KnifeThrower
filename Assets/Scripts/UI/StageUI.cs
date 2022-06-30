@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -7,7 +8,7 @@ using Image = UnityEngine.UI.Image;
 
 public class StageUI : MonoBehaviour
 {
-    [SerializeField] private Text _stageText;
+    [SerializeField] private TextMeshProUGUI _stageText;
     [SerializeField] private SceneLogic _sceneLogic;
     [SerializeField] private GameObject _stageBar;
     [SerializeField] private GameObject _stageStandartPrefab;
@@ -66,13 +67,13 @@ public class StageUI : MonoBehaviour
         {
             for (int i = 0; i < count; i++)
             {
-                if (i+1 == count && !onStart)
+                if (i + 1 == count && !onStart)
                 {
                     StartCoroutine(PopUp(_stageBarParts[i], 0.5f));
                 }
                 else
                 {
-                    _stageBarParts[i].GetComponent<Image>().color = Color.green;   
+                    _stageBarParts[i].GetComponent<Image>().color = Color.green;
                 }
             }
         }
@@ -84,7 +85,7 @@ public class StageUI : MonoBehaviour
             boss.transform.GetChild(0).GetComponent<Image>().color = Color.yellow;
             if (_bossAppear)
             {
-                StartCoroutine(OnBossFight(bossPosition));   
+                StartCoroutine(OnBossFight(bossPosition));
             }
             else
             {
@@ -112,7 +113,7 @@ public class StageUI : MonoBehaviour
         {
             _bossAppear = true;
         }
-        
+
         ChangeStageBarColour(PlayerPrefs.GetInt(_currentProgress), false);
         WriteStage();
     }
@@ -121,18 +122,22 @@ public class StageUI : MonoBehaviour
     {
         for (float t = 0; t < _timeToPopUp; t += Time.deltaTime)
         {
-            stage.transform.localScale = Vector3.Lerp(stage.transform.localScale, new Vector3(1.5f,1.5f, 1.5f), t / _timeToPopUp);
+            stage.transform.localScale =
+                Vector3.Lerp(stage.transform.localScale, new Vector3(1.5f, 1.5f, 1.5f), t / _timeToPopUp);
             yield return null;
         }
+
         WaitForSeconds delay = new WaitForSeconds(timeDelay);
         for (float t = 0; t < _timeToPopUp; t += Time.deltaTime)
         {
-            stage.transform.localScale = Vector3.Lerp(stage.transform.localScale, new Vector3(1,1,1), t / _timeToPopUp);
+            stage.transform.localScale =
+                Vector3.Lerp(stage.transform.localScale, new Vector3(1, 1, 1), t / _timeToPopUp);
             yield return null;
         }
-        stage.GetComponent<Image>().color = Color.green; 
+
+        stage.GetComponent<Image>().color = Color.green;
     }
-    
+
     private IEnumerator OnBossFight(Vector3 bossPosition)
     {
         for (float t = 0; t < _timeToStageMove; t += Time.deltaTime)

@@ -18,6 +18,8 @@ MonoBehaviour:
   SpawnAppleChance: 25
   KnifeNeedToPassLevel: 5
   LogMaterial: {fileID: 2100000, guid: 7b75de93db744494ba6400e17299b5d4, type: 2}
+  BreakSound: {fileID: 0}
+  OpenKnife: {fileID: 0}
   LogRotation:
     serializedVersion: 2
     m_Curve:
@@ -69,3 +71,4 @@ MonoBehaviour:
     m_PreInfinity: 1
     m_PostInfinity: 1
     m_RotationOrder: 4
+  LevelType: 0
